@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Create Products</title>
+    <title>Edit Products</title>
     <style>
         * {
             margin: 0;
@@ -79,25 +79,26 @@
 
 
 
-    <form action="{{ route('product.store') }}" method="post">
+    <form action="{{ route('product.update',['product'=>$product]) }}" method="post">
+        @method('put')
         @csrf
         <div class="form-group">
             <label for="name">Name:</label>
-            <input type="text" name="name"  >
+            <input type="text" name="name"  value="{{$product->name}}">
         </div>
         <div class="form-group">
             <label for="quantity">Quantity:</label>
-            <input type="number" name="quantity"  >
+            <input type="number" name="quantity"  value="{{$product->quantity}}">
         </div>
         <div class="form-group">
             <label for="description">Description:</label>
-            <textarea class="form-control-desc" name="description"></textarea>
+            <textarea class="form-control-desc" value="{{$product->description}}" name="description">{{$product->description}}</textarea>
         </div>
         <div class="form-group">
             <label for="price">Price:</label>
-            <input type="number" step="0.01" name="price"  >
+            <input type="number" step="0.01" name="price" value="{{$product->price}}" >
         </div>
-        <input type="submit" class="btn btn-primary" value="Submit">
+        <input type="submit" class="btn btn-primary" value="Edit">
     </form>
 </div>  
 </body>
